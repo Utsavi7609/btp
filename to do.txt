@@ -1,0 +1,8 @@
+- switch to "when the video ends" (done)
+- flipping logic in frontend (done)
+- fetching logic in backend (done)
+- thankyou page (done with)
+- userID (done)
+- saving to logfile (done)
+- saving to database (done)
+- User data page (done)

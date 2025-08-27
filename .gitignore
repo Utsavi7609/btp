@@ -1,0 +1,17 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+
+# Build outputs
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# SQLite DBs (ignore if you don’t want to share DB files)
+*.db
+
+# Environment variables
+.env

@@ -1,0 +1,110 @@
+IIT Kharagpur
+Department of Computer Science and Engineering
+Course : Design Laboratory
+Name : Vineet Amol Pippal
+Roll No. : 20CS30058
+
+------------------------
+
+Prerequisites:
+Ensure you have the following installed on your machine:
+- Node.js (v16 or later recommended)
+- npm (comes with Node.js)
+- SQLite3 CLI (optional, for manual database access)
+
+------------------------
+
+Project Structure:
+- /emotion-webapp       → React frontend
+- /video-api-backend    → Node.js + Express backend with SQLite
+
+------------------------
+
+1. Installing Dependencies
+
+From the root of the project:
+> npm install
+
+Then, separately install dependencies for the frontend and backend:
+
+For the frontend:
+> cd emotion-webapp  
+> npm install
+
+For the backend:
+> cd ../video-api-backend  
+> npm install
+
+------------------------
+
+2. Running the App
+
+To run the frontend (React):
+1. Navigate to the frontend directory:
+> cd emotion-webapp
+
+2. Start the development server:
+> npm run dev
+
+This will run the app at: http://localhost:5173  
+(Or check terminal output for the exact local URL.)
+
+---
+
+To run the backend (Express + SQLite):
+1. Navigate to the backend directory:
+> cd ../video-api-backend
+
+2. Start the server:
+> node server.js
+
+The backend will run at: http://localhost:5000  
+
+------------------------
+
+3. Accessing the SQLite3 Database
+
+Navigate to the backend directory:
+> cd video-api-backend
+
+Start SQLite CLI:
+> sqlite3 emotion_inputs.db
+
+Useful SQLite commands:
+- View `EmotionInputs` table:
+  > SELECT * FROM EmotionInputs;
+
+- View `UserData` table:
+  > SELECT * FROM UserData;
+
+- Exit SQLite:
+  > .exit  (or press Ctrl + D)
+
+------------------------
+
+4. Cleaning Up Old Database Records
+
+Delete records older than 7 days:
+> DELETE FROM EmotionInputs WHERE timestamp < datetime('now', '-7 days');
+
+OR, keep only the most recent 1000 entries:
+> DELETE FROM EmotionInputs
+  WHERE rowid NOT IN (
+    SELECT rowid FROM EmotionInputs
+    ORDER BY timestamp DESC
+    LIMIT 1000
+  );
+
+Then, reclaim unused space via vaccuum command:
+> VACUUM;
+
+------------------------
+
+Additional Notes
+
+- Ensure CORS is properly configured if frontend and backend are on different ports.
+- Use `.env` files to manage environment variables if needed.
+- Consider using a process manager like `pm2` for deploying the backend in production.
+- To reset the DB entirely, delete `emotion_inputs.db` and restart the backend to recreate tables automatically.
+
+------------------------
